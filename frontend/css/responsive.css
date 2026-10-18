@@ -1,0 +1,300 @@
+
+/* ========================================
+   CAREEROS RESPONSIVE DESIGN
+   Clean Light + Blue Theme
+======================================== */
+
+/* ================= TABLETS ================= */
+
+@media screen and (max-width: 1000px) {
+
+    .navbar {
+        padding: 14px 4%;
+        gap: 18px;
+    }
+
+    nav,
+    .nav-links {
+        gap: 16px;
+    }
+
+    .hero {
+        padding: 70px 5%;
+        gap: 35px;
+    }
+
+    .hero h1 {
+        font-size: 46px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .career-card {
+        width: 320px;
+        padding: 25px;
+    }
+
+    .features,
+    .how-it-works {
+        padding: 75px 5%;
+    }
+
+    .feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* ================= SMALL TABLETS ================= */
+
+@media screen and (max-width: 768px) {
+
+    .navbar {
+        min-height: auto;
+        padding: 18px 5%;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    nav,
+    .nav-links {
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    nav a,
+    .nav-links a {
+        font-size: 13px;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 60px 5%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 40px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+        letter-spacing: -1.5px;
+    }
+
+    .hero-description {
+        max-width: 100%;
+    }
+
+    .career-card {
+        width: 100%;
+        max-width: 480px;
+        align-self: center;
+    }
+
+    .section-heading {
+        margin-bottom: 40px;
+    }
+
+    .section-heading h2 {
+        font-size: 34px;
+    }
+
+    .features,
+    .how-it-works {
+        padding: 65px 5%;
+    }
+
+    .feature-card {
+        padding: 23px;
+    }
+
+    .step {
+        padding: 25px;
+    }
+
+    footer {
+        padding: 35px 5%;
+    }
+}
+
+/* ================= MOBILE PHONES ================= */
+
+@media screen and (max-width: 480px) {
+
+    .navbar {
+        padding: 16px 5%;
+        gap: 14px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    nav,
+    .nav-links {
+        width: 100%;
+        gap: 12px 18px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    nav a,
+    .nav-links a {
+        font-size: 13px;
+    }
+
+    .login-btn {
+        padding: 7px 0;
+    }
+
+    .register-btn {
+        padding: 9px 13px;
+    }
+
+    .hero {
+        padding: 45px 5%;
+        gap: 30px;
+    }
+
+    .tagline {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        margin-bottom: 16px;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+        line-height: 1.2;
+        letter-spacing: -1px;
+        margin-bottom: 18px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+        line-height: 1.75;
+        margin-bottom: 25px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+        width: 100%;
+        padding: 13px 16px;
+    }
+
+    .career-card {
+        padding: 23px;
+        border-radius: 16px;
+    }
+
+    .score {
+        font-size: 48px;
+    }
+
+    .features,
+    .how-it-works {
+        padding: 50px 5%;
+    }
+
+    .section-heading {
+        margin-bottom: 30px;
+    }
+
+    .section-heading p {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+    }
+
+    .section-heading h2 {
+        font-size: 28px;
+    }
+
+    .feature-grid,
+    .steps {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .feature-card,
+    .step {
+        padding: 23px;
+    }
+
+    .feature-card h3,
+    .step h3 {
+        font-size: 17px;
+    }
+
+    .feature-card p,
+    .step p {
+        font-size: 14px;
+    }
+
+    .skills-container {
+        gap: 8px;
+    }
+
+    .skill-badge {
+        font-size: 12px;
+        padding: 7px 11px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .analysis-list li {
+        font-size: 13px;
+        overflow-wrap: anywhere;
+    }
+
+    footer {
+        padding: 30px 5%;
+    }
+
+    footer p {
+        font-size: 12px;
+    }
+}
+
+/* ================= VERY SMALL PHONES ================= */
+
+@media screen and (max-width: 360px) {
+
+    .hero h1 {
+        font-size: 31px;
+    }
+
+    .career-card {
+        padding: 18px;
+    }
+
+    .score {
+        font-size: 42px;
+    }
+
+    .feature-card,
+    .step {
+        padding: 18px;
+    }
+
+    nav,
+    .nav-links {
+        gap: 10px 14px;
+    }
+}

@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | CareerOS</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Authentication CSS -->
+    <link rel="stylesheet" href="css/auth.css">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+
+</head>
+
+<body>
+
+
+    <!-- ================= AUTH PAGE ================= -->
+
+    <main class="auth-page">
+
+        <div class="auth-container">
+
+            <!-- ================= LEFT SIDE ================= -->
+
+            <section class="auth-info">
+
+                <div class="logo">
+                    Career<span>OS</span>
+                </div>
+
+                <div class="auth-label">
+                    WELCOME BACK
+                </div>
+
+                <h1>
+                    Continue your
+                    <span>career journey.</span>
+                </h1>
+
+                <p>
+                    Login to CareerOS and continue preparing
+                    for your next opportunity.
+                </p>
+
+            </section>
+
+
+            <!-- ================= LOGIN FORM ================= -->
+
+            <section class="auth-form">
+
+                <h2>Welcome Back</h2>
+
+                <p class="form-subtitle">
+                    Login to your CareerOS account
+                </p>
+
+              <form id="loginForm">
+
+    <div class="form-group">
+        <label for="email">Email Address</label>
+
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+
+        <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required>
+    </div>
+
+    <div id="message"></div>
+
+    <button type="submit" class="auth-button">
+        Login
+    </button>
+
+</form>
+
+                <!-- Register Link -->
+
+                <p class="login-link">
+
+                    Don't have an account?
+
+                    <a href="register.html">
+                        Create an account
+                    </a>
+
+                </p>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- Authentication JavaScript -->
+
+
+    <script src="js/auth.js"></script>
+
+
+</body>
+
+</html>

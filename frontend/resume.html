@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareerOS - Resume Analyzer</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/resume.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            Career<span>OS</span>
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="resume.html">
+                Resume Analyzer
+            </a>
+
+            <a href="interview.html">
+                Mock Interview
+            </a>
+
+            <a href="login.html" class="login-btn">
+                Login
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="resume-page">
+
+
+        <!-- ================= UPLOAD SECTION ================= -->
+
+        <section class="resume-upload">
+
+
+            <div class="upload-icon">
+                📄
+            </div>
+
+
+            <h1>
+                Upload Your Resume
+            </h1>
+
+
+            <p>
+                Upload your resume and let AI analyze
+                your skills, strengths and career readiness.
+            </p>
+
+
+            <p class="file-info">
+                Supported formats: PDF, DOC, DOCX
+            </p>
+
+
+            <!-- FILE INPUT -->
+
+            <input type="file" id="resumeInput" accept=".pdf,.doc,.docx">
+
+
+            <!-- ANALYZE BUTTON -->
+
+            <button id="uploadBtn" class="primary-btn">
+
+                Analyze Resume
+
+            </button>
+
+
+            <!-- MESSAGE -->
+
+            <p id="uploadMessage" class="upload-message">
+            </p>
+
+
+        </section>
+
+
+
+        <!-- ================= ANALYSIS SECTION ================= -->
+
+        <section id="analysisResult" class="analysis-section" style="display: none;">
+
+
+            <div class="analysis-title">
+
+                <h2>
+                    Resume Analysis
+                </h2>
+
+                <p>
+                    AI-powered analysis of your resume
+                </p>
+
+            </div>
+
+
+
+            <!-- ================= CAREER SCORE ================= -->
+
+            <div class="analysis-card score-card">
+
+                <h3>
+                    🎯 Career Score
+                </h3>
+
+
+                <div class="career-score">
+
+                    <span id="careerScore">
+                        0/100
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= SKILLS ================= -->
+
+            <div class="analysis-card">
+
+                <h3>
+                    💻 Skills
+                </h3>
+
+
+                <div id="skillsResult" class="skills-container">
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= STRENGTHS ================= -->
+
+            <div class="analysis-card">
+
+                <h3>
+                    💪 Strengths
+                </h3>
+
+
+                <ul id="strengthsResult" class="analysis-list">
+                </ul>
+
+            </div>
+
+
+
+            <!-- ================= RECOMMENDATIONS ================= -->
+
+            <div class="analysis-card">
+
+                <h3>
+                    🚀 Recommendations
+                </h3>
+
+
+                <ul id="recommendationsResult" class="analysis-list">
+                </ul>
+
+            </div>
+
+
+
+            <!-- ================= IMPROVEMENTS ================= -->
+
+            <div class="analysis-card">
+
+                <h3>
+                    ⚠️ Improvements
+                </h3>
+
+
+                <ul id="improvementResult" class="analysis-list">
+                </ul>
+
+            </div>
+
+
+
+            <!-- ================= JOB DESCRIPTION MATCHING ================= -->
+
+            <div class="analysis-card job-match-card">
+
+                <h3>🎯 Job Description Matching</h3>
+
+                <p>
+                    Compare your resume with a job description to identify
+                    matching skills, missing skills, and areas to improve.
+                </p>
+
+                <label for="jobDescription">
+                    Paste the Job Description
+                </label>
+
+                <textarea id="jobDescription" rows="8"
+                    placeholder="Paste the Java Full Stack Developer job description here..."></textarea>
+
+                <button type="button" id="matchJobBtn" class="primary-btn">
+                    Match My Resume
+                </button>
+
+                <p id="jobMatchMessage" class="upload-message"></p>
+
+                <!-- Matching results will appear here -->
+                <div id="jobMatchResults" style="display: none;">
+
+                    <h3>Match Score</h3>
+                    <div class="career-score">
+                        <span id="jobMatchScore">0%</span>
+                    </div>
+
+                    <h3>✅ Matching Skills</h3>
+                    <ul id="matchingSkillsResult" class="analysis-list"></ul>
+
+                    <h3>⚠️ Missing Skills</h3>
+                    <ul id="missingSkillsResult" class="analysis-list"></ul>
+
+                    <h3>🚀 Suggestions</h3>
+                    <ul id="jobSuggestionsResult" class="analysis-list"></ul>
+
+                </div>
+
+            </div>
+
+
+
+
+            <!-- ================= INTERVIEW BUTTON ================= -->
+
+            <div class="interview-action">
+
+                <h3>
+                    Ready for your interview?
+                </h3>
+
+
+                <p>
+                    Use your analyzed resume to start
+                    an AI-powered mock interview.
+                </p>
+
+
+                <a href="interview.html" class="primary-btn">
+
+                    Start Mock Interview →
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="logo">
+            Career<span>OS</span>
+        </div>
+
+        <p>
+            AI-powered career preparation platform.
+        </p>
+
+    </footer>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="js/resume.js"></script>
+
+</body>
+
+</html>

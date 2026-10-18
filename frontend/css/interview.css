@@ -1,0 +1,557 @@
+
+/* ========================================
+   CAREEROS - MOCK INTERVIEW
+   Clean Light + Blue Theme
+======================================== */
+
+/* ================= BASE ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f6f8fc;
+    color: #172033;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 14px 7%;
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: #172033;
+    white-space: nowrap;
+}
+
+.logo span {
+    color: #2563eb;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: #475569;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #2563eb;
+}
+
+/* ================= PAGE CONTAINER ================= */
+
+.interview-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 55px 24px 75px;
+}
+
+/* ================= PAGE HEADER ================= */
+
+.interview-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.interview-header h1 {
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.25;
+    letter-spacing: -1px;
+    color: #172033;
+    margin-bottom: 12px;
+}
+
+.interview-header p {
+    max-width: 650px;
+    margin: 0 auto;
+    color: #64748b;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* ================= MAIN CARD ================= */
+
+.interview-card {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding: 36px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+    animation: cardAppear 0.4s ease;
+}
+
+.interview-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+}
+
+/* ================= START SCREEN ================= */
+
+#startScreen {
+    text-align: center;
+    padding: 15px 0;
+}
+
+#startScreen h2 {
+    font-size: 25px;
+    color: #172033;
+    margin-bottom: 14px;
+}
+
+#startScreen p {
+    max-width: 620px;
+    margin: 0 auto 22px;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+#startScreen ul {
+    list-style: none;
+    max-width: 480px;
+    margin: 0 auto 28px;
+    text-align: left;
+}
+
+#startScreen li {
+    position: relative;
+    padding: 10px 0 10px 28px;
+    color: #475569;
+    font-size: 14px;
+}
+
+#startScreen li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    color: #15803d;
+    font-weight: 800;
+}
+
+/* ================= BUTTONS ================= */
+
+#startInterviewBtn,
+#submitAnswerBtn,
+#nextQuestionBtn,
+#restartInterviewBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 46px;
+    padding: 12px 23px;
+    border: 1px solid #2563eb;
+    border-radius: 9px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#startInterviewBtn:hover,
+#submitAnswerBtn:hover,
+#nextQuestionBtn:hover,
+#restartInterviewBtn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 7px 18px rgba(37, 99, 235, 0.18);
+}
+
+#startInterviewBtn:disabled,
+#submitAnswerBtn:disabled,
+#nextQuestionBtn:disabled,
+#restartInterviewBtn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ================= QUESTION SCREEN ================= */
+
+#questionScreen {
+    width: 100%;
+}
+
+.question-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 22px;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+#questionNumber {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 12px;
+    border-radius: 20px;
+    background: #eff6ff;
+    color: #1d4ed8;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#questionText {
+    font-size: clamp(20px, 3vw, 27px);
+    line-height: 1.5;
+    color: #172033;
+    margin-bottom: 24px;
+    overflow-wrap: anywhere;
+}
+
+/* ================= ANSWER INPUT ================= */
+
+#answerInput {
+    display: block;
+    width: 100%;
+    min-height: 180px;
+    padding: 16px;
+    resize: vertical;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #172033;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#answerInput::placeholder {
+    color: #94a3b8;
+}
+
+#answerInput:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+#submitAnswerBtn {
+    margin-top: 18px;
+}
+
+/* ================= EVALUATION BOX ================= */
+
+.evaluation-box {
+    margin-top: 25px;
+    padding: 24px;
+    background: #f8faff;
+    border: 1px solid #dbeafe;
+    border-radius: 14px;
+    animation: evaluationAppear 0.35s ease;
+}
+
+.evaluation-box h3 {
+    color: #172033;
+    font-size: 18px;
+    margin-bottom: 14px;
+}
+
+#answerScore {
+    display: inline-block;
+    color: #1d4ed8;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 9px;
+    padding: 8px 13px;
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+#answerFeedback,
+#answerSuggestion {
+    color: #475569;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-top: 10px;
+    overflow-wrap: anywhere;
+}
+
+#answerFeedback strong,
+#answerSuggestion strong {
+    color: #172033;
+}
+
+#nextQuestionBtn {
+    margin-top: 20px;
+}
+
+/* ================= RESULT SCREEN ================= */
+
+#resultScreen {
+    text-align: center;
+    padding: 12px 0;
+}
+
+#resultScreen h2 {
+    font-size: 29px;
+    line-height: 1.35;
+    color: #172033;
+    margin-bottom: 12px;
+}
+
+#resultScreen > p {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* ================= FINAL SCORE ================= */
+
+.score-box {
+    width: 190px;
+    max-width: 100%;
+    margin: 28px auto;
+    padding: 24px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 18px;
+    animation: scoreAppear 0.5s ease;
+}
+
+#interviewScore {
+    color: #1d4ed8;
+    font-size: 48px;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.score-box p {
+    color: #64748b;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+#interviewFeedback {
+    max-width: 650px;
+    margin: 0 auto 25px;
+    padding: 22px;
+    text-align: left;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    color: #475569;
+    font-size: 14px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+#interviewFeedback h3 {
+    color: #172033;
+    margin-bottom: 10px;
+}
+
+#restartInterviewBtn {
+    margin-top: 5px;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes evaluationAppear {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scoreAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ================= TABLETS ================= */
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding: 16px 5%;
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    .nav-links {
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    .interview-container {
+        padding: 40px 20px 60px;
+    }
+
+    .interview-card {
+        padding: 28px;
+    }
+
+    .interview-header {
+        margin-bottom: 28px;
+    }
+}
+
+/* ================= MOBILE ================= */
+
+@media screen and (max-width: 480px) {
+    .navbar {
+        padding: 15px 5%;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .nav-links {
+        width: 100%;
+        gap: 10px 16px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+    }
+
+    .interview-container {
+        padding: 30px 14px 45px;
+    }
+
+    .interview-header h1 {
+        font-size: 29px;
+    }
+
+    .interview-header p {
+        font-size: 14px;
+    }
+
+    .interview-card {
+        padding: 24px 18px;
+        border-radius: 15px;
+    }
+
+    #startScreen h2 {
+        font-size: 22px;
+    }
+
+    #questionText {
+        font-size: 20px;
+    }
+
+    #answerInput {
+        min-height: 160px;
+        padding: 13px;
+        font-size: 14px;
+    }
+
+    #startInterviewBtn,
+    #submitAnswerBtn,
+    #nextQuestionBtn,
+    #restartInterviewBtn {
+        width: 100%;
+        padding: 12px 15px;
+    }
+
+    .evaluation-box {
+        padding: 18px;
+    }
+
+    #resultScreen h2 {
+        font-size: 25px;
+    }
+
+    .score-box {
+        width: 160px;
+        padding: 20px;
+    }
+
+    #interviewScore {
+        font-size: 42px;
+    }
+
+    #interviewFeedback {
+        padding: 17px;
+    }
+}
+
+/* ================= REDUCED MOTION ================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

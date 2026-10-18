@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Mock Interview - CareerOS</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/interview.css">
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            CareerOS
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Dashboard
+            </a>
+
+            <a href="resume.html">
+                Resume Analyzer
+            </a>
+
+            <a href="interview.html">
+                Mock Interview
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="interview-container">
+
+        <div class="interview-header">
+
+            <h1>
+                AI MOCK INTERVIEW
+            </h1>
+
+            <p>
+                Practice Your Interview
+            </p>
+
+        </div>
+
+
+        <!-- ================= START SCREEN ================= -->
+
+        <div id="startScreen" class="interview-card">
+
+            <h2>
+                Ready for your interview?
+            </h2>
+
+            <p>
+                Gemini AI will generate interview
+                questions based on your resume.
+            </p>
+
+            <button id="startInterviewBtn">
+                Start Interview
+            </button>
+
+        </div>
+
+
+        <!-- ================= QUESTION SCREEN ================= -->
+
+        <div id="questionScreen" class="interview-card" style="display: none;">
+
+            <div class="question-info">
+
+                <span>
+                    Question
+                </span>
+
+                <span id="questionNumber">
+                    1 / 10
+                </span>
+
+            </div>
+
+
+            <h2 id="questionText">
+                Loading question...
+            </h2>
+
+
+            <textarea id="answerInput" placeholder="Type your answer here..." rows="7">
+            </textarea>
+
+            <button id="submitAnswerBtn">
+                Submit Answer
+            </button>
+
+
+            <!-- AI Evaluation -->
+            <div id="evaluationBox" class="evaluation-box" style="display: none;">
+
+                <h3>🤖 AI Evaluation</h3>
+
+                <div class="evaluation-score">
+                    <span>Score</span>
+                    <strong id="answerScore">0/10</strong>
+                </div>
+
+                <div class="evaluation-section">
+                    <h4>💬 Feedback</h4>
+                    <p id="answerFeedback"></p>
+                </div>
+
+                <div class="evaluation-section">
+                    <h4>💡 Suggestion</h4>
+                    <p id="answerSuggestion"></p>
+                </div>
+
+                <button id="nextQuestionBtn">
+                    Next Question
+                </button>
+
+            </div>
+
+
+
+        </div>
+
+
+        <!-- ================= RESULT SCREEN ================= -->
+
+        <div id="resultScreen" class="interview-card" style="display: none;">
+
+            <h2>
+                Interview Completed 🎉
+            </h2>
+
+            <div class="score-box">
+
+                <h3>
+                    Your Score
+                </h3>
+
+                <div id="interviewScore">
+                    0/100
+                </div>
+
+            </div>
+
+
+            <p id="interviewFeedback">
+                Good job!
+            </p>
+
+
+            <button id="restartInterviewBtn">
+                Start Again
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="./js/interview.js"></script>
+</body>
+
+</html>
