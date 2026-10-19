@@ -1,4 +1,4 @@
-﻿package com.careeros.service;
+package com.careeros.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.google.genai.Client;
