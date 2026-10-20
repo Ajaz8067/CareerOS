@@ -106,7 +106,9 @@ if (registerForm) {
         try {
 
             const response = await fetch(
-                "http://localhost:8080/api/users/register",
+
+                "https://careeros-backend-4si3.onrender.com/api/users/register",
+                
                 {
                     method: "POST",
 
@@ -217,7 +219,7 @@ if (loginForm) {
             console.log("Sending login request...");
 
             const response = await fetch(
-                "http://localhost:8080/api/users/login",
+            "https://careeros-backend-4si3.onrender.com/api/users/login",
                 {
                     method: "POST",
 
@@ -247,27 +249,27 @@ if (loginForm) {
 
             const responseText = await response.text();
 
-console.log("Login response body:", responseText);
+            console.log("Login response body:", responseText);
 
-if (!responseText.trim()) {
-    throw new Error("Login API returned an empty response.");
-}
+            if (!responseText.trim()) {
+                throw new Error("Login API returned an empty response.");
+            }
 
 
-const data = JSON.parse(responseText);
-console.log("LOGIN DATA:", data);
-console.log("USER ID:", data.id);
+            const data = JSON.parse(responseText);
+            console.log("LOGIN DATA:", data);
+            console.log("USER ID:", data.id);
 
-console.log("Login response data:", data);
-console.log("Actual user ID:", data.id);
+            console.log("Login response data:", data);
+            console.log("Actual user ID:", data.id);
 
-// Save login information
-localStorage.setItem("loggedIn", "true");
-localStorage.setItem("userId", data.id);
-localStorage.setItem("userName", data.name);
-localStorage.setItem("userEmail", data.email);
+            // Save login information
+            localStorage.setItem("loggedIn", "true");
+            localStorage.setItem("userId", data.id);
+            localStorage.setItem("userName", data.name);
+            localStorage.setItem("userEmail", data.email);
 
-console.log("Login successful:", data);
+            console.log("Login successful:", data);
 
 
             message.textContent = "Login successful!";

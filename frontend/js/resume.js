@@ -131,8 +131,10 @@ async function analyzeResume() {
         // =========================================
 
         const response =
-    await fetch(
-        "http://localhost:8080/api/resume/analyze",
+            await fetch(
+
+                "https://careeros-backend-4si3.onrender.com/api/resume/analyze",
+
                 {
                     method: "POST",
                     body: formData
@@ -149,53 +151,53 @@ async function analyzeResume() {
         // =========================================
         // GET RESPONSE AS TEXT
         // =========================================
-const text = await response.text();
+        const text = await response.text();
 
-console.log("Backend response:", text);
+        console.log("Backend response:", text);
 
-let data;
+        let data;
 
-try {
-    data = JSON.parse(text);
-} catch (error) {
+        try {
+            data = JSON.parse(text);
+        } catch (error) {
 
-    console.error("Invalid JSON from backend:", text);
+            console.error("Invalid JSON from backend:", text);
 
-    uploadMessage.textContent =
-        "Backend returned an invalid response.";
+            uploadMessage.textContent =
+                "Backend returned an invalid response.";
 
-    return;
-}
+            return;
+        }
 
-console.log("Parsed backend response:", data);
-
-
-// =========================================
-// CHECK QUOTA ERROR
-// =========================================
-
-if (response.status === 429) {
-
-    uploadMessage.textContent =
-        data.message ||
-        "AI service quota has been reached. Please try again later.";
-
-    return;
-}
+        console.log("Parsed backend response:", data);
 
 
-// =========================================
-// CHECK OTHER HTTP ERRORS
-// =========================================
+        // =========================================
+        // CHECK QUOTA ERROR
+        // =========================================
 
-if (!response.ok) {
+        if (response.status === 429) {
 
-    uploadMessage.textContent =
-        data.message ||
-        "Resume analysis failed. Please try again.";
+            uploadMessage.textContent =
+                data.message ||
+                "AI service quota has been reached. Please try again later.";
 
-    return;
-}
+            return;
+        }
+
+
+        // =========================================
+        // CHECK OTHER HTTP ERRORS
+        // =========================================
+
+        if (!response.ok) {
+
+            uploadMessage.textContent =
+                data.message ||
+                "Resume analysis failed. Please try again.";
+
+            return;
+        }
 
 
         // =========================================

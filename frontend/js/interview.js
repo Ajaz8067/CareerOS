@@ -14,13 +14,15 @@ let currentQuestionText = "";
 // Backend URLs
 // =====================================
 
+
 const QUESTION_API =
-    "http://192.168.1.11:8080/api/interview/question";
+    "https://careeros-backend-4si3.onrender.com/api/interview/question";
 
 const EVALUATE_API =
-    "http://192.168.1.11:8080/api/interview/evaluate";
+    "https://careeros-backend-4si3.onrender.com/api/interview/evaluate";
+
 const HISTORY_API =
-    "http://192.168.1.11:8080/api/interview/history";
+    "https://careeros-backend-4si3.onrender.com/api/interview/history";
 
 // =====================================
 // Get HTML Elements
