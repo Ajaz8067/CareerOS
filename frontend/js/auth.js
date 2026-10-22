@@ -323,7 +323,7 @@ if (loggedIn === "true") {
 
     if (userNav) {
         userNav.style.display = "inline-block";
-        userNav.textContent = "Welcome, " + userName + " ðŸ‘‹";
+      userNav.textContent = "Welcome, " + userName + " \u{1F44B}";
     }
 
     if (logoutBtn) {
@@ -352,4 +352,16 @@ if (logoutBtn) {
     });
 
 
+}
+// Fix Build My Career Profile button
+const buildProfileBtn = document.getElementById("buildProfileBtn");
+
+if (buildProfileBtn) {
+    const loggedIn = localStorage.getItem("loggedIn");
+
+    if (loggedIn === "true") {
+        buildProfileBtn.href = "resume.html";
+    } else {
+        buildProfileBtn.href = "register.html";
+    }
 }
