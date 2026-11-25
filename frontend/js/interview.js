@@ -10,6 +10,10 @@ const totalQuestions = 10;
 let score = 0;
 let currentQuestionText = "";
 
+// Store questions generated in the background
+const questionCache = new Map();
+const questionRequests = new Map();
+
 // =====================================
 // Backend URLs
 // =====================================
@@ -115,6 +119,90 @@ function extractQuestion(data) {
     return "";
 }
 
+
+
+async function fetchQuestionFromBackend(questionNo) {
+
+    const resumeText = getResumeText();
+
+    if (!resumeText) {
+        throw new Error("Resume text is missing.");
+    }
+
+    const response = await fetch(QUESTION_API, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body:
+            "resumeText=" + encodeURIComponent(resumeText) +
+            "&questionNumber=" + questionNo
+    });
+
+    const responseText = await response.text();
+
+    if (!response.ok) {
+        throw new Error(
+            "Question API failed: HTTP " + response.status
+        );
+    }
+
+    const question = extractQuestion(parseResponse(responseText));
+
+    if (!question) {
+        throw new Error("No question received from Gemini.");
+    }
+
+    return question;
+}
+
+function getQuestionPromise(questionNo) {
+
+    if (!questionRequests.has(questionNo)) {
+
+        const request = fetchQuestionFromBackend(questionNo)
+            .then(question => {
+                questionCache.set(questionNo, question);
+                return question;
+            })
+            .catch(error => {
+                questionRequests.delete(questionNo);
+                throw error;
+            });
+
+        questionRequests.set(questionNo, request);
+    }
+
+    return questionRequests.get(questionNo);
+}
+
+function prefetchNextQuestion() {
+
+    const nextNumber = currentQuestion + 1;
+
+    if (nextNumber > totalQuestions) {
+        return;
+    }
+
+    if (questionCache.has(nextNumber) ||
+        questionRequests.has(nextNumber)) {
+        return;
+    }
+
+    console.log("Prefetching question:", nextNumber);
+
+    getQuestionPromise(nextNumber)
+        .then(() => {
+            console.log("Next question ready:", nextNumber);
+        })
+        .catch(error => {
+            console.warn(
+                "Background question generation failed:",
+                error.message
+            );
+        });
+}
+
 // =====================================
 // Start Interview
 // =====================================
@@ -173,80 +261,56 @@ async function loadQuestion() {
         nextQuestionBtn.style.display = "none";
     }
 
-    try {
-        console.log("========== SENDING INTERVIEW REQUEST TO BACKEND ==========");
-        console.log("Request URL:", QUESTION_API);
-        console.log("Resume text available:", Boolean(resumeText));
-        console.log("Resume text length:", resumeText.length);
+    
+try {
 
-        const response = await fetch(QUESTION_API, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body:
-                "resumeText=" + encodeURIComponent(resumeText) +
-                "&questionNumber=" + currentQuestion
-        });
+    const requestedQuestion = currentQuestion;
 
-        console.log("========== INTERVIEW HTTP RESPONSE ==========");
-        console.log("HTTP Status:", response.status);
-        console.log("Response OK:", response.ok);
-        console.log(
-            "Content-Type:",
-            response.headers.get("content-type")
-        );
+    console.log(
+        "Loading question:",
+        requestedQuestion
+    );
+
+    const question = await getQuestionPromise(
+        requestedQuestion
+    );
+
+    // Prevent an old request from updating the screen.
+    if (currentQuestion !== requestedQuestion) {
+        return;
+    }
+
+    currentQuestionText = question;
+    questionText.textContent = question;
+
+    answerInput.disabled = false;
+    submitAnswerBtn.disabled = false;
+    submitAnswerBtn.textContent = "Submit Answer";
+
+    console.log("Question displayed:", question);
+
+    // Generate the next question in the background.
+    prefetchNextQuestion();
+
+} catch (error) {
+
+    console.error("Question generation error:", error);
+
+    questionText.textContent =
+        "Unable to generate question. Please try again.";
+
+    submitAnswerBtn.disabled = true;
+    submitAnswerBtn.textContent = "Question Failed";
+
+    answerInput.disabled = true;
+}
+
 
         // Read the response body only once.
-        const responseText = await response.text();
+    
 
-        console.log("Raw question response:", responseText);
 
-        if (!response.ok) {
-            throw new Error(
-                "Question API failed. HTTP " +
-                response.status +
-                ". Response: " +
-                responseText
-            );
-        }
 
-        const data = parseResponse(responseText);
-
-        console.log("Parsed question response:", data);
-
-        const question = extractQuestion(data);
-
-        if (!question) {
-            throw new Error(
-                "The server responded, but no question text was found. " +
-                "Check the response format in the console."
-            );
-        }
-
-        currentQuestionText = question;
-        questionText.textContent = question;
-
-        answerInput.disabled = false;
-        submitAnswerBtn.disabled = false;
-        submitAnswerBtn.textContent = "Submit Answer";
-
-        console.log("========== INTERVIEW QUESTION RECEIVED ==========");
-        console.log("Question:", question);
-
-    } catch (error) {
-        console.error("========== INTERVIEW QUESTION ERROR ==========");
-        console.error("Error details:", error);
-        console.error("Error message:", error.message);
-
-        questionText.textContent = "Unable to generate question.";
-
-        submitAnswerBtn.disabled = false;
-        submitAnswerBtn.textContent = "Try Again";
-
-        answerInput.disabled = true;
-    }
-}
 
 // =====================================
 // Submit Answer For Evaluation
@@ -483,6 +547,10 @@ if (restartInterviewBtn) {
         score = 0;
         currentQuestionText = "";
 
+        // Clear previously generated questions
+        questionCache.clear();
+        questionRequests.clear();
+
         startScreen.style.display = "block";
         questionScreen.style.display = "none";
         resultScreen.style.display = "none";
@@ -502,4 +570,5 @@ if (restartInterviewBtn) {
 
         console.log("Interview restarted.");
     });
+}
 }
